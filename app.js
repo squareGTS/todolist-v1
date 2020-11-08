@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({
 app.use(express.static("public")); // can use css
 app.get("/", function(req, res) {
 
-const day = date.getDate();
+  const day = date.getDate();
 
 
   // var currentDay = today.getDay();
@@ -51,7 +51,6 @@ const day = date.getDate();
     newListItems: items
   });
 
-
   app.post("/", function(req, res) {
 
     const item = req.body.newItem;
@@ -65,17 +64,17 @@ const day = date.getDate();
     }
   });
 
-  app.post("/work", function() {
-    const item = req.body.newItem;
-    workItems.push(item);
-    res.redirect("/work");
-  });
-
   app.get("/work", function(req, res) {
     res.render("list", {
       listTitle: "Work List",
       newListItems: workItems
     });
+  });
+
+  app.post("/work", function(req, res) {
+    const item = req.body.newItem;
+    workItems.push(item);
+    res.redirect("/work");
   });
 
   app.get("/about", function(req, res) {
